@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="b1"/>
+    <div id="b2"></div>
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% comment %} <script type="text/javascript">
+    $("#b1").on("change",function(){
+        $.ajax({
+            url:'',
+            type:'post',
+            data: {
+                btext:$(this).val()
+            },
+            success:function(responce){
+                $("#b1").text(responce.seconds)
+            }
+        });
+    });
+</script> {% endcomment %}
+<script src="{% static 'index.js'%}"></script>
+</html>
