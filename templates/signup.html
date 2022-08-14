@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>login</h1>
+    {% if submitted %}
+    Your form was submitted successfully!!!
+    {% else %}
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+       <label>username:</label>
+       <input type="text" name="username" required>
+       <label>email:</label>
+       <input type="text" name="email" required>
+       <label>Password:</label>
+       <input type="text" name="password" required>
+       <label>Firstname:</label>
+       <input type="text" name="firstname"required>
+       <label>Lastname:</label>
+       <input type="text" name="lastname" required>
+       <label>Profile picture:</label>
+       <input type="file" name="file" required>
+       <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+    <div id="b2"></div>
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{% static 'index.js'%}"></script>
+</html>

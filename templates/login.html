@@ -14,25 +14,15 @@
     {% else %}
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
+       <label>username:</label>
+       <input type="text" name="username" required>
+       <label>Password:</label>
+       <input type="text" name="password" required>
+       <button type="submit">Submit</button>
     </form>
     {% endif %}
     <div id="b2"></div>
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- <!-- <script type="text/javascript">
-    $("#b1").on("change",function(){
-        $.ajax({
-            url:'',
-            type:'post',
-            data: {
-                btext:$(this).val()
-            },
-            success:function(responce){
-                $("#b1").text(responce.seconds)
-            }
-        });
-    });
-</script> -->
 <script src="{% static 'index.js'%}"></script>
 </html>

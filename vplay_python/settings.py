@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6zlrd+sa*(1x*s*2&*s9jlm*ln=98el@xv9znog1m_hpnmdy_^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','localhost:80','192.168.0.101']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','localhost:80','192.168.0.101','192.168.0.1','10.108.5.179']
 
 
 # Application definition
@@ -115,7 +115,7 @@ CORS_ALLOW_METHODS = [
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'vpanel',  
+        'NAME': 'vplay',  
         'USER':'root',  
         'PASSWORD':'',  
         'HOST':'localhost',  
