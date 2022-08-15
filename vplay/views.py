@@ -1,5 +1,7 @@
 from datetime import time
 from email import message
+import profile
+import re
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse,HttpRequest,HttpResponse
@@ -12,17 +14,19 @@ from .models import uploads,Profile
 import os
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
 @login_required
 @csrf_exempt
 def index(request):
     print(request.user.id)
-    # if request.method == 'GET':
-    #     text = request.GET.get('btext')
-    #     print(text)
-    #     t = time()
-    #     return JsonResponse({'seconds':t},status=200)
-    return render(request,'index.html')
+    prf=Profile.objects.filter(user=request.user)
+    print(prf.count())
+    context = {
+      'username':request.user.username,
+      'profile':prf
+    }
+    return render(request,'index.html',context)
 
 def login_user(request):
   if request.method=="POST":
@@ -62,30 +66,18 @@ def signup(request):
       return redirect('../login/')
   return render(request,'signup.html')
 
-mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  user="root",
-  password="",
-  database="vuploads"
-)
-t = []
-async def hello(request):
-  mycursor = mydb.cursor()
-  mycursor.execute("SELECT * FROM users")
-  myresult = mycursor.fetchall()
-  myr2 = list(myresult)
+@login_required
+def hello(request):
+  User = get_user_model()
+  myr2 = User.objects.all()
   payload = []
   content = {}
-  i = 0
   for x in myr2:
-    query="SELECT * FROM persons where uploadby = {}".format(x[0])
-    m = mydb.cursor()
-    m.execute(query)
-    mr = m.fetchall()
-    mr2 = list(mr)
+    mr = Profile.objects.filter(user=request.user)
+    mz = uploads.objects.filter(uploadby=x.id)
     for y in mr:
-      if y[5] == x[0]:
-        content={'id':y[0],'title':y[1],'username':x[1],'user':x[4],'description':y[2],'picture':y[3],'url':y[4]}
-        payload.append(content)
-        content = {}
+      for z in mz:
+          content={'id':z.id,'title':z.title,'username':x.username,'user':y.profile,'description':z.description,'picture':z.thumbpath,'url':z.vidpath}
+          payload.append(content)
+          content = {}
   return HttpResponse(json.dumps(payload), content_type="application/json")

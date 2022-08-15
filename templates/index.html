@@ -1,38 +1,109 @@
+
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="{%static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+    font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>login</h1>
-    {% if submitted %}
-    Your form was submitted successfully!!!
-    {% else %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-    </form>
-    {% endif %}
-    <div id="b2"></div>
+    <div style="text-align: left;" class="header">
+        <div class="hh1" style="text-align: center;"><span><span class="c1" style="color: red;"> VPLAY </span>
+        </div>
+        <div class="header2">
+        <table class="s1" style="text-align: left; width: 500px; height: 51px;" border="0" cellpadding="2" cellspacing="2">
+        <tbody>
+        <tr>
+        <td style="vertical-align: top;"><a style="color: white;" href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/vplex.html"><button style="color: white;" value="videos" name="videos" type="button">FETURED</button></a><br>
+        </td>
+        <td style="vertical-align: top;"><a target="_self" href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/music/music.html"><button style="color: white;" value="MUSIC" name="music" type="button">TRENDING</button><br>
+        </a></td>
+        <td style="vertical-align: top;"><a style="color: white;" href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/vmtv/minitv.html"><span style="text-decoration: underline;"><button value="vmtv" style="color: white;" name="vmtv" type="button">NEW</button></span></a><br>
+        </td>
+        <td style="vertical-align: top;"><span style="text-decoration: underline; color: white;"><button style="color: white;" value="upcoming" name="upcoming">FACTS</button></span><br>
+        </td>
+        <td style="vertical-align: top;"><a href="https://hemaborasia.wixsite.com/website"><button style="color: white;" value="About us" name="About us">VPLAY!</button></a></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="s2">
+
+        </div>
+    <section id="footer">
+        <div id="myOverlay" class="overlay">
+            <span class="closebtn"
+                    onclick="closeSearch()"
+                    title="Close Overlay">
+                    X
+            </span>
+            <div class="overlay-content">		
+                <input type="text" onblur="searchFun()" id="myInput"
+                        placeholder="Search.."
+                        name="search" />
+                <button onclick="submit()">
+                    <i class="fa fa-search"></i>
+                      </button>
+            </div>
+            </div>
+            <a href="search.php"><button class="openBtn">
+        <i id="fa" class="fa fa-search"></i>
+            </button></a>
+          <button class="openBtn">
+            <a href="upload.php"><i id="fa" class="fa fa-plus" aria-hidden="true"></i>
+          </button></a>
+          <a href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/music/music.html">
+            <button class="openBtn">
+              <i id="fa" class="fas fa-music"></i>
+            </button>
+          </a>
+          <a href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/vplex.html">
+            <button class="openBtn">
+              <i id="fa" class="fas fa-video"></i>
+            </button>
+          </a>
+          <a href = "user.php">
+          <button id="openBtn" class="openBtn">
+            {%for x in profile%}
+            <img style="width:38px;height:36px;border-radius:100px;float:left;" src="{{x.profile}}">
+            {% endfor %}    
+        </button>
+          </a>
+          </a>
+          </a>
+          </section>
+        
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- <!-- <script type="text/javascript">
-    $("#b1").on("change",function(){
+ <script type="text/javascript">
+    $(document).ready(function(){
         $.ajax({
-            url:'',
-            type:'post',
-            data: {
-                btext:$(this).val()
-            },
-            success:function(responce){
-                $("#b1").text(responce.seconds)
+            url:'http://192.168.0.101:8000/my/',
+            type:'GET',
+            success:function(data){
+                $.each(data,function(key,value){
+                    console.log(value.url);
+                    let hello = document.getElementById("s2");
+                    hello.innerHTML+=`
+                    <br>
+                    <p1><img class="im1" src="${value.user}">${value.username}</p1><p2 style='color: black;'><a href = 'javascript:void(0)' onclick = 'document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block''>:</a></p2>
+                    <a href="video?=${value.id}"><img class="im2" src="${value.picture}">
+                    <p3>${value.title}</p3></a>
+                    `
+                })
             }
         });
     });
-</script> -->
+</script>
 <script src="{% static 'index.js'%}"></script>
 </html>
