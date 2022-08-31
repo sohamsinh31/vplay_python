@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link id="stylesheet" rel="stylesheet" type="text/css" href="{%static 'style.css' %}"/>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,15 +16,83 @@
             color: white;
             height: unset;
         }
+        .wrapper {
+          padding: 20px 28px;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          flex-flow: row wrap;
+        }
+
+        h3 {
+          margin: 10px 14px 10px 0;
+          font-weight: 300;
+          font-size: 36px;
+        }
+
+        p {
+          margin: 10px 10px;
+          font-weight: 300;
+          font-size: 14px;
+          opacity: 0.8;
+          letter-spacing: 1px;
+        }
+
+        {##hashtags {#}
+        {#  border: none;#}
+        {#  border-radius: 12px;#}
+        {#  padding: 16px 20px;#}
+        {#  margin: 8px;#}
+        {#  width: 100%;#}
+        {#  color: #666;#}
+        {#  font-family: 'Work Sans', sans-serif;#}
+        {#  font-size: 16px;#}
+        {#  outline: none;#}
+        {#}#}
+
+        .tag-container {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        .tag{
+          pointer-events: none;
+          background-color: #242424;
+          color: white;
+          padding: 6px;
+          margin: 5px;
+        }
+
+        .tag::before {
+          pointer-events: all;
+          display: inline-block;
+          content: 'x';
+          height: 20px;
+          width: 20px;
+          margin-right: 6px;
+          text-align: center;
+          color: #ccc;
+          background-color: #111;
+          cursor: pointer;
+        }
+        .upload {
+            height: unset;
+        }
+        #fa{
+        font-size: 30px;
+            color: deeppink;
+            width: 10%;
+        }
+
     </style>
 </head>
 <body>
 <div class="upload">
-    <form enctype="multipart/form-data" method="post">
-        <label>Title:</label><input style="border-bottom: 2px solid white;background:none;border-style: none none solid;" type="text" name="title" id="title">
-        <label>Description:</label><input style="border-bottom: 2px solid white;background:none;border-style: none none solid;height:46px;" type="text"  name="desc">
+    <form id="form1" enctype="multipart/form-data" method="post">
+        <label>Title:</label><input  style="border-bottom: 2px solid white;background:none;border-style: none none solid;" type="text" name="title" id="title">
+        <label>Description:</label><input id="desc" style="border-bottom: 2px solid white;background:none;border-style: none none solid;height:46px;" type="text"  name="desc">
         <label>categorey:</label>
-        <select name="cate">
+        <select id="cate" name="cate">
         <option>SCIENCE&amp;FICTION</option>
         <option>COMEDY</option>
         <option>STUDY&amp;EDUCATION</option>
@@ -33,16 +104,23 @@
         <div class="wrapper">
           <label>Hashtags:</label>
           <input style="border-bottom: 2px solid white;background:none;border-style: none none solid;width: 75%;float: left;" type="text" id="hashtags" autocomplete="off">
-            <button style="color: white" id="tags">Add</button>
+            <button style="color: white" type="button" id="tags">Add</button>
           <div class="tag-container">
           </div>
         </div>
-        <label>Thumbnail:</label><input type="file" name="thumb">
-        <label>Video:</label><input type="file" name="video">
-        <button style="color: white" type="submit">save</button>
+        <label>Thumbnail:</label>
+        <div id="thumbb">
+<i id="fa" class="fas fa-image"> &nbsp;/</i><i id="fa" style="width: auto;padding-right: 15px" class="fas fa-camera"></i><input accept="image/*" type="file" style="display: none" name="thumb">
+            <label id="th"></label></div>
+            <label>Video:</label>
+                <div id="vidd">
+<i id="fa" class="fas fa-video"> &nbsp;</i><input style="display: none" accept="video/*" type="file" name="video">
+            <label id="vd"></label></div>
+        <button style="color: white" type="button" id="sub">save</button>
     </form>
 </div>
     <div id="hello"></div>
 </body>
-<script src="{% static 'index.js'%}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{% static 'upload.js'%}"></script>
 </html>

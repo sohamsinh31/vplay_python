@@ -8,5 +8,5 @@ from django.conf import settings
 urlpatterns = [
     path('',views.index,name="index"),
     path('api/index/',views.hello,name="hello"),
-    path('api/upload/',upload.upload,name="upload"),
+    path('api/upload/',upload.hello,name="upload"),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
