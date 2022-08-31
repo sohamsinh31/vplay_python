@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -37,68 +36,26 @@
         <br>
         <br>
         <br>
-        <div id="s2">
-
-        </div>
-    <section id="footer">
-        <div id="myOverlay" class="overlay">
-            <span class="closebtn"
-                    onclick="closeSearch()"
-                    title="Close Overlay">
-                    X
-            </span>
-            <div class="overlay-content">		
-                <input type="text" onblur="searchFun()" id="myInput"
-                        placeholder="Search.."
-                        name="search" />
-                <button onclick="submit()">
-                    <i class="fa fa-search"></i>
-                      </button>
-            </div>
-            </div>
-            <a href="search.php"><button class="openBtn">
-        <i id="fa" class="fa fa-search"></i>
-            </button></a>
-          <button class="openBtn">
-            <a href="upload.php"><i id="fa" class="fa fa-plus" aria-hidden="true"></i>
-          </button></a>
-          <a href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/music/music.html">
-            <button class="openBtn">
-              <i id="fa" class="fas fa-music"></i>
-            </button>
-          </a>
-          <a href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/vplex.html">
-            <button class="openBtn">
-              <i id="fa" class="fas fa-video"></i>
-            </button>
-          </a>
-          <a href = "user.php">
-          <button id="openBtn" class="openBtn">
-            {%for x in profile%}
-            <img style="width:38px;height:36px;border-radius:100px;float:left;" src="{{x.profile}}">
-            {% endfor %}    
-        </button>
-          </a>
-          </a>
-          </a>
-          </section>
-        
+    <div id="vid">
+    </div>
+    {% include 'include/footer.html' %}
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  <script type="text/javascript">
     $(document).ready(function(){
         $.ajax({
-            url:'http://192.168.0.101:8000/my/',
+            url:'http://127.0.0.1:8000/api/index/',
             type:'GET',
             success:function(data){
                 $.each(data,function(key,value){
-                    console.log(value.url);
-                    let hello = document.getElementById("s2");
+                    let hello = document.getElementById("vid");
                     hello.innerHTML+=`
                     <br>
+                    <div id="s2">
                     <p1><img class="im1" src="${value.user}">${value.username}</p1><p2 style='color: black;'><a href = 'javascript:void(0)' onclick = 'document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block''>:</a></p2>
-                    <a href="video?=${value.id}"><img class="im2" src="${value.picture}">
+                    <a href="/video=${value.id}"><img class="im2" src="${value.picture}">
                     <p3>${value.title}</p3></a>
+                     </div>
                     `
                 })
             }

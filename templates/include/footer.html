@@ -18,7 +18,7 @@
     <i id="fa" class="fa fa-search"></i>
         </button></a>
       <button class="openBtn">
-        <a href="upload.php"><i id="fa" class="fa fa-plus" aria-hidden="true"></i>
+        <a href="upload"><i id="fa" class="fa fa-plus" aria-hidden="true"></i>
       </button></a>
       <a href="https://htmlpreview.github.io/?https://github.com/sohamsinh31/Vplex.github.io/blob/main/music/music.html">
         <button class="openBtn">
@@ -30,9 +30,11 @@
           <i id="fa" class="fas fa-video"></i>
         </button>
       </a>
-      <a href = "user.php">
-      <button id="openBtn" class="openBtn">
-          <?php userimmenu(); ?>
+      <a href = "user">
+          <button id="openBtn" class="openBtn">
+            {%for x in profile%}
+            <img style="width:38px;height:36px;border-radius:100px;float:left;" src="{{x.profile}}">
+            {% endfor %}
         </button>
       </a>
       </a>

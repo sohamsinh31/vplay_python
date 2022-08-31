@@ -27,7 +27,7 @@ def index(request):
       'profile':prf
     }
     return render(request,'index.html',context)
-
+@csrf_exempt
 def login_user(request):
   if request.method=="POST":
     username = request.POST['username']

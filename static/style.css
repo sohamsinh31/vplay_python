@@ -407,7 +407,6 @@ body, li {
     #s2, #s4, #s6 {
       width: 99%;
       padding-top: 2px;
-      overflow: scroll;
     }
     
     @media only screen and (max-width: 768px) {

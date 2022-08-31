@@ -1,15 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="{%static 'style.css' %}"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>upload</title>
+    <style>
+        button{
+            padding: 15px;
+            color: white;
+            height: unset;
+        }
+    </style>
 </head>
 <body>
+<div class="upload">
     <form enctype="multipart/form-data" method="post">
-        <label>title:</label><input type="text" name="title" id="title">
-        <label>desc:</label><input type="text"  name="desc">
+        <label>Title:</label><input style="border-bottom: 2px solid white;background:none;border-style: none none solid;" type="text" name="title" id="title">
+        <label>Description:</label><input style="border-bottom: 2px solid white;background:none;border-style: none none solid;height:46px;" type="text"  name="desc">
         <label>categorey:</label>
         <select name="cate">
         <option>SCIENCE&amp;FICTION</option>
@@ -20,10 +30,19 @@
         <option>BUISNESS</option>
         <option>ROMANCE&amp;LOVE</option>
         </select>
+        <div class="wrapper">
+          <label>Hashtags:</label>
+          <input style="border-bottom: 2px solid white;background:none;border-style: none none solid;width: 75%;float: left;" type="text" id="hashtags" autocomplete="off">
+            <button style="color: white" id="tags">Add</button>
+          <div class="tag-container">
+          </div>
+        </div>
         <label>Thumbnail:</label><input type="file" name="thumb">
         <label>Video:</label><input type="file" name="video">
-        <button type="submit">save</button>
+        <button style="color: white" type="submit">save</button>
     </form>
+</div>
     <div id="hello"></div>
 </body>
+<script src="{% static 'index.js'%}"></script>
 </html>
