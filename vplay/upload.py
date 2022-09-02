@@ -3,19 +3,11 @@ import re
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpRequest, HttpResponse
-import mysql
 import json
 from datetime import datetime
 from django.core.files.storage import FileSystemStorage
 from .models import uploads
 from django.contrib.auth.decorators import login_required
-
-mydb = mysql.connector.connect(
-    host="127.0.0.1",
-    user="root",
-    password="",
-    database="vuploads"
-)
 
 
 @csrf_exempt

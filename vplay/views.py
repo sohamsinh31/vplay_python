@@ -1,5 +1,6 @@
 from datetime import time
 from email import message
+from multiprocessing import context
 import profile
 import re
 from django.shortcuts import render,redirect
@@ -81,3 +82,8 @@ def hello(request):
           payload.append(content)
           content = {}
   return HttpResponse(json.dumps(payload), content_type="application/json")
+
+def video(request,id):
+  upl = uploads.objects.filter(id=id)
+  context={'src':upl}
+  return render(request,'video.html',context)

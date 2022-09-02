@@ -41,4 +41,8 @@ $(document).ready(function(){
             }
         });
     });
+
 });
+function video(id){
+  location.replace(`/video/${id}`);
+}
